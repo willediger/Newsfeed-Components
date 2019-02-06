@@ -4,6 +4,7 @@ class Article {
   constructor(domElement = null) {
     // assign this.domElement to the passed in domElement
     if (!domElement) {
+      //if we're creating a new article from scratch, we have to create the initial div.article and add the appropriate sub elements to it. 
       this.domElement = document.createElement('div');
       this.domElement.classList.add('article');
       this.domElement.appendChild(document.createElement('h2'));
@@ -15,6 +16,7 @@ class Article {
 
       this.title = this.domElement.querySelector('h2');
       this.date = this.domElement.querySelector('.date');
+      //content paragraph is second p tag. the first p tag is p.date.
       this.content = this.domElement.querySelectorAll('p')[1];
     } else {
       this.domElement = domElement;
@@ -37,6 +39,7 @@ class Article {
   }
 
   setDate() {
+    //sets the p.date to today, in "MMM DD, YYYY" format
     const options = {month: 'short', day: 'numeric', year: 'numeric'};
     const today = new Date();
     this.date.textContent = today.toLocaleDateString("en-US", options);
@@ -61,11 +64,12 @@ let articleList = articles.querySelectorAll('.article');
 articleList.forEach(a => new Article(a));
 
 
-let newArticle = new Article();
-newArticle.setTitle('mic check 1 2 1 2');
-newArticle.setDate();
-const bjhIpsum = `I had dibs! My dibs were on those muffins! The amazing thing is, the house looks just like BoJack's house. They must have the same architect. Anyway, how are things with you? All right. You told me to come at 9:00. Uh, sorry. Your telephone is ringing. I'm Ira Glass. Thank you for being a sustaining member of public radio. Everyone has a story, and your phone's story is that it's ringing. Any comment on BoJack's controversial remarks this week? Good night. Get cancer, jerk wad. We're living month to month here. We're kind of counting on your autobiography to save the company, no pressure.`
-newArticle.setContent(bjhIpsum)
-console.log(newArticle);
+// code to test manually adding new article and setting text contents on elements within the article
 
-articles.appendChild(newArticle.domElement);
+// let newArticle = new Article();
+// newArticle.setTitle('mic check 1 2 1 2');
+// newArticle.setDate();
+// const bjhIpsum = `I had dibs! My dibs were on those muffins! The amazing thing is, the house looks just like BoJack's house. They must have the same architect. Anyway, how are things with you? All right. You told me to come at 9:00. Uh, sorry. Your telephone is ringing. I'm Ira Glass. Thank you for being a sustaining member of public radio. Everyone has a story, and your phone's story is that it's ringing. Any comment on BoJack's controversial remarks this week? Good night. Get cancer, jerk wad. We're living month to month here. We're kind of counting on your autobiography to save the company, no pressure.`
+// newArticle.setContent(bjhIpsum)
+
+// articles.appendChild(newArticle.domElement);
