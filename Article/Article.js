@@ -73,3 +73,48 @@ articleList.forEach(a => new Article(a));
 // newArticle.setContent(bjhIpsum)
 
 // articles.appendChild(newArticle.domElement);
+
+const inputForm = document.createElement('form')
+inputForm.style.display = 'flex'
+inputForm.style.flexDirection = 'column'
+inputForm.style.marginLeft = "10%"
+inputForm.style.width = "50%"
+
+const inputTitleLabel = document.createElement('label')
+inputTitleLabel.textContent = "Title"
+inputTitleLabel.style.marginBottom = "5px"
+const inputTitle = document.createElement('input')
+inputTitle.classList.add('input-title')
+inputTitle.style.marginBottom = "20px"
+const inputContentLabel = document.createElement('label')
+inputContentLabel.textContent = "Post"
+inputContentLabel.style.marginBottom = "5px"
+const inputContent = document.createElement('textarea')
+inputContent.classList.add('input-content')
+inputContent.setAttribute('rows', 5)
+inputContent.style.marginBottom = "5px"
+const inputSubmit = document.createElement('input')
+inputSubmit.setAttribute('type', 'submit')
+inputSubmit.setAttribute('value', 'Submit')
+
+inputForm.appendChild(inputTitleLabel)
+inputForm.appendChild(inputTitle)
+inputForm.appendChild(inputContentLabel)
+inputForm.appendChild(inputContent)
+inputForm.appendChild(inputSubmit)
+
+articles.insertAdjacentElement('afterbegin', inputForm);
+
+
+inputSubmit.addEventListener('click', e => {
+  if (inputTitle.value && inputContent.value) {
+    newArticle = new Article();
+    newArticle.setTitle(inputTitle.value);
+    newArticle.setDate();
+    newArticle.setContent(inputContent.value);
+    articles.appendChild(newArticle.domElement);
+    inputTitle.value = ''
+    inputContent.value = ''
+    event.preventDefault();
+  }
+});
